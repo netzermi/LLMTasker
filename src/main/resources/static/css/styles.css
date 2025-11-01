@@ -1,0 +1,5 @@
+/* small additions on top of bootstrap */
+body { background: #f8f9fa; color: #222; }
+.container { padding: 8px; }
+.card { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.border-danger { border-left: 4px solid #dc3545 !important; }
