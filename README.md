@@ -24,6 +24,36 @@ export GOOGLE_API_KEY=YOUR_KEY
 java -jar target/llm-tasker-0.1.0.jar
 ```
 
+Windows — PowerShell (session only):
+
+```
+$env:GOOGLE_API_KEY = "YOUR_KEY"
+java -jar target/llm-tasker-0.1.0.jar
+```
+
+Windows — PowerShell (persist for current user):
+
+```
+setx GOOGLE_API_KEY "YOUR_KEY"
+# You need to start a new shell for the variable to be available
+java -jar target/llm-tasker-0.1.0.jar
+```
+
+Windows — Command Prompt (session only):
+
+```
+set GOOGLE_API_KEY=YOUR_KEY
+java -jar target/llm-tasker-0.1.0.jar
+```
+
+Windows — Command Prompt (persist for current user):
+
+```
+setx GOOGLE_API_KEY "YOUR_KEY"
+# Open a new cmd window for the variable to apply
+java -jar target/llm-tasker-0.1.0.jar
+```
+
 Alternatively set `google.api.key` in `application.properties`.
 
 API
