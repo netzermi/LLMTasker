@@ -20,15 +20,23 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Create Task</h5>
-                    <form action="/create" method="post">
-                        <div class="mb-2">
-                            <input class="form-control" placeholder="Title" type="text" name="title" required />
+                    <form action="/create" method="post" th:object="${task}">
+                        <div th:if="${errors != null}" class="alert alert-danger">
+                            <ul class="mb-0">
+                                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+                            </ul>
                         </div>
                         <div class="mb-2">
-                            <input class="form-control" placeholder="Description" type="text" name="description" />
+                            <input class="form-control" placeholder="Title" type="text" name="title" th:field="*{title}" required />
+                            <div class="text-danger small" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
                         </div>
                         <div class="mb-2">
-                            <input class="form-control datetime" placeholder="Select date & time" type="text" name="dueDate" required />
+                            <input class="form-control" placeholder="Description" type="text" name="description" th:field="*{description}" required />
+                            <div class="text-danger small" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                        </div>
+                        <div class="mb-2">
+                            <input class="form-control datetime" placeholder="Select date & time" type="text" name="dueDate" th:field="*{dueDate}" required />
+                            <div class="text-danger small" th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></div>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary">Create Task</button>
@@ -83,7 +91,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Summary</h5>
-                    <pre th:text="${summary}" class="mb-0">No summary yet</pre>
+                    <div th:if="${renderedSummary != null and renderedSummary != ''}" th:utext="${renderedSummary}" class="rendered-markdown"></div>
+                    <div th:if="${renderedSummary == null or renderedSummary == ''}" class="text-muted">No summary yet</div>
                 </div>
             </div>
         </div>

@@ -3,6 +3,8 @@ package at.hakimst.tasker.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,11 +18,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Title is required")
     private String title;
 
     @Column(length = 4000)
+    @NotBlank(message = "Description is required")
     private String description;
 
+    @NotNull(message = "Due date is required")
     private LocalDate dueDate;
 
     private LocalDate createdAt;
